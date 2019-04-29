@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/ionic.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var url = "localhost/app/json-input.php";
+        $.getJSON(url, function(result) {
+            console.log(result);
+            $.each(result, function(i, field) {
+                var no_ktp = field.no_ktp;
+                var nama = field.nama;
+                var jk = field.jk;
+				var umur = field.umur;
+                $("#listview").append("<a class='item' href='input.html?no_ktp=" + no_ktp + "&nama=" + nama + "&jk=" + jk + "&umur=" + umur + "'><span class='item-note'>" + umur + "</span><h2>" + jk + " </h2><p>" + nama + "</p></a>");
+            });
+        });
+    });
+    </script>
+</head>
+
+<body>
+        <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="index.html">SISFO DBD</a>
+                  </div>
+                  <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                      <li class="active"><a href="index.html">Home</a></li>
+                      <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Input <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            <li><a href="input.html">Input Pasien</a></li>
+ 
+                        </ul>
+                      </li>
+                      <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tampilan <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                                <li><a href="readjson-input.html">List Kasus DBD</a></li>
+								<li><a href="#">Report Data DBD</a></li>
+                      </ul>
+                    </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>  
+    
+    <br/>
+    <ul class="list" id="listview">
+    </ul>
+</body>
+
+</html>
